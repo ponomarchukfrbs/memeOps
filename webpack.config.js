@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: './public/src/script.js',
@@ -27,6 +28,20 @@ plugins: [
     }),
     new MiniCssExtractPlugin({
       filename: 'style.css',
+    }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: 'public', to: '.',
+          globOptions: {
+            ignore: [
+              '**/index.html',
+              '**/style.css',
+              '**/src/**'
+            ],
+          },
+        },
+      ],
     }),
   ],
   devtool: 'eval-source-map',
