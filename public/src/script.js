@@ -90,16 +90,16 @@ signupBtn.addEventListener('click', async () => {
 	}
 
 	try {
-        	const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        	console.log('User signed up:', userCredential.user.email);
+		const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+		console.log('User signed up:', userCredential.user.email);
 
-        	await updateProfile(userCredential.user, { displayName: displayName });
-        	console.log('Display name set:', displayName);
+		await updateProfile(userCredential.user, { displayName: displayName });
+		console.log('Display name set:', displayName);
 
-        	authStatus.textContent = `Signed up and logged in as: ${displayName},`;
+		authStatus.textContent = `Signed up and logged in as: ${displayName},`;
 	} catch (error) {
-        	authStatus.textContent = `Error signing up: ${error.message}`;
-        	console.error('Sign up error:', error);
+		authStatus.textContent = `Error signing up: ${error.message}`;
+		console.error('Sign up error:', error);
 	}
 });
 
@@ -108,14 +108,14 @@ loginBtn.addEventListener('click', () => {
 	const email = loginEmailInput.value;
 	const password = loginPasswordInput.value;
 	signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-		console.log('User logged in:', userCredential.user.email);
-		authStatus.textContent = `${userCredential.user.displayName},`;
-        })
-        .catch((error) => {
-		authStatus.textContent = `Error logging in: ${error.message}`;
-		console.error('Login error:', error);
-        });
+		.then((userCredential) => {
+			console.log('User logged in:', userCredential.user.email);
+			authStatus.textContent = `${userCredential.user.displayName},`;
+		})
+		.catch((error) => {
+			authStatus.textContent = `Error logging in: ${error.message}`;
+			console.error('Login error:', error);
+		});
 });
 
 //Google Auth
@@ -123,35 +123,34 @@ const provider = new GoogleAuthProvider();
 
 SignInButtonGoogle.addEventListener('click', () => {
 	signInWithPopup(auth, provider)
-	.then((result) => {
-		// The signed-in user info.
-		const user = result.user;
-		console.log('User signed in with Google:', result.user.email);
+		.then((result) => {
+			const user = result.user;
+			console.log('User signed in with Google:', result.user.email);
 
-	}).catch((error) => {
-		console.error('Google Sign-in error:', error);
-	});
+		}).catch((error) => {
+			console.error('Google Sign-in error:', error);
+		});
 });
 
 //Logout
 logoutBtn.addEventListener('click', () => {
 	signOut(auth)
-        .then(() => {
-		console.log('User logged out');
-		authStatus.textContent = 'Logged out,';
-		newMemeInputDiv.style.display = 'none';
-		authSection.style.display = 'none';
-		if (unsubscribeFromMemes) {
-			unsubscribeFromMemes();
-			unsubscribeFromMemes = null;
-		}
-		loadMemes();
-		resetPostForm();
-        })
-        .catch((error) => {
-		authStatus.textContent = `Error logging out: ${error.message}`;
-		console.error('Logout error:', error);
-        });
+		.then(() => {
+			console.log('User logged out');
+			authStatus.textContent = 'Logged out,';
+			newMemeInputDiv.style.display = 'none';
+			authSection.style.display = 'none';
+			if (unsubscribeFromMemes) {
+				unsubscribeFromMemes();
+				unsubscribeFromMemes = null;
+			}
+			loadMemes();
+			resetPostForm();
+		})
+		.catch((error) => {
+			authStatus.textContent = `Error logging out: ${error.message}`;
+			console.error('Logout error:', error);
+		});
 });
 
 //User status change
@@ -181,29 +180,29 @@ onAuthStateChanged(auth, (user) => {
 
 //Image upload
 imageUploadInput.addEventListener('change', (event) => {
-    selectedFile = event.target.files[0];
-    if (selectedFile) {
-	    const allowedTypes = ['image/jpeg', 'image/png'];
+	selectedFile = event.target.files[0];
+	if (selectedFile) {
+		const allowedTypes = ['image/jpeg', 'image/png'];
 
-	    if (allowedTypes.includes(selectedFile.type)){
-            // Display image preview
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                imagePreview.src = e.target.result;
-                imagePreview.style.display = 'block';
-            };
-            reader.readAsDataURL(selectedFile);
-	    } else {
-		alert ('Please select a JPG or PNG image');
-		imageUploadInput.value = '';
+		if (allowedTypes.includes(selectedFile.type)) {
+			// Display image preview
+			const reader = new FileReader();
+			reader.onload = (e) => {
+				imagePreview.src = e.target.result;
+				imagePreview.style.display = 'block';
+			};
+			reader.readAsDataURL(selectedFile);
+		} else {
+			alert('Please select a JPG or PNG image');
+			imageUploadInput.value = '';
+			imagePreview.src = '#';
+			imagePreview.style.display = 'none';
+			selectedFile = null;
+		}
+	} else {
 		imagePreview.src = '#';
 		imagePreview.style.display = 'none';
-		selectedFile = null;
-            }
-	} else {
-            imagePreview.src = '#';
-            imagePreview.style.display = 'none';
-        }
+	}
 });
 
 // Function to save to Firestore
@@ -279,7 +278,7 @@ function loadMemes() {
 	}
 
 	const publicMemesCollectionRef = collection(db, 'public_memes');
-    	const q = query(publicMemesCollectionRef, orderBy('timestamp', 'desc'));
+	const q = query(publicMemesCollectionRef, orderBy('timestamp', 'desc'));
 
 	unsubscribeFromMemes = onSnapshot(q, (snapshot) => {
 		memesList.innerHTML = '';
@@ -298,12 +297,12 @@ function loadMemes() {
 			const posterInfo = meme.userName || meme.userEmail || 'Anonymous';
 			// Poster Avatar
 			const posterChar = posterInfo.charAt(0);
-			const avatarImage = document.createElement ('div');
+			const avatarImage = document.createElement('div');
 			avatarImage.classList.add('avatar');
 			avatarImage.textContent = `${posterChar}`;
 			listItem.appendChild(avatarImage);
 
-			const metaInfo = document.createElement ('span');
+			const metaInfo = document.createElement('span');
 			metaInfo.innerHTML = `${posterInfo} <p style="margin-top: 0px;"><small style="color: #757575; font-weight: normal;">${formattedDate}</small></p>`;
 			metaInfo.style.display = 'block';
 			listItem.appendChild(metaInfo);

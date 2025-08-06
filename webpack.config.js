@@ -20,10 +20,17 @@ module.exports = {
       }
     ]
   },
-plugins: [
+  plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',
+      filename: 'index.html',
       title: 'memeOps - IT memes',
+      inject: 'body',
+    }),
+    new HtmlWebpackPlugin({
+      template: './public/404.html',
+      filename: '404.html',
+      title: 'memeOps - Not found',
       inject: 'body',
     }),
     new MiniCssExtractPlugin({
@@ -36,6 +43,7 @@ plugins: [
           globOptions: {
             ignore: [
               '**/index.html',
+              '**/404.html',
               '**/style.css',
               '**/src/**'
             ],

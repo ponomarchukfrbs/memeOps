@@ -1,51 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>memeOps - IT memes</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/favicon.ico">
 </head>
+
 <body>
     <div class="container">
-        <a href="/"> <div id="logo"></div></a>
-	<div id="signin-section">
-	    <button id="signin-btn">Sign In</button>
-	    <button id="logout-btn" style="display: none;">Log Out</button>
-	    <span id="auth-status"></span>
+        <a href="/">
+            <div id="logo"></div>
+        </a>
+        <div id="signin-section">
+            <button id="signin-btn">Sign In</button>
+            <button id="logout-btn" style="display: none;">Log Out</button>
+            <span id="auth-status"></span>
         </div>
-	<div id="auth-section" style="display: none;">
+        <div id="auth-section" style="display: none;">
             <div class="tab-buttons">
-	        <button id="show-login-btn">Log In</button>
+                <button id="show-login-btn">Log In</button>
                 <button id="show-signup-btn" class="active">Join memeOps</button>
-	    </div>
+            </div>
 
             <div id="signup-tab" class="auth-tab" style="display: none;">
                 <div class="auth-tab-fields">
-		    <input type="text" id="display-name" placeholder="Display Name *">
+                    <input type="text" id="display-name" placeholder="Display Name *">
                     <input type="email" id="signup-email" placeholder="Email *">
                     <input type="password" id="signup-password" placeholder="Password *">
-		</div>
-		<button id="signup-btn">Sign Up</button>
+                </div>
+                <button id="signup-btn">Sign Up</button>
             </div>
 
             <div id="login-tab" class="auth-tab">
                 <div class="auth-tab-fields">
-		    <input type="email" id="login-email" placeholder="Email *">
+                    <input type="email" id="login-email" placeholder="Email *">
                     <input type="password" id="login-password" placeholder="Password *">
-		</div>
-		<button id="login-btn">Log In</button>
-	    </div>
-	    <div class="separator">
-		<span class="line"></span>
-		<span class="text">OR</span>
-		<span class="line"></span>
-	    </div>
-	    <div class="signin-providers">
-	        <button id="signin-btn-google">Sign In with Google</button>
+                </div>
+                <button id="login-btn">Log In</button>
             </div>
-	    <div class="separator">
-		<span class="line"></span>
-	    </div>
+            <div class="separator">
+                <span class="line"></span>
+                <span class="text">OR</span>
+                <span class="line"></span>
+            </div>
+            <div class="signin-providers">
+                <button id="signin-btn-google">Sign In with Google</button>
+            </div>
+            <div class="separator">
+                <span class="line"></span>
+            </div>
 
         </div>
 
@@ -62,7 +66,8 @@
             <ul id="memes-list">
             </ul>
         </div>
-	<div id="footer">Built with ❤ for memes. <a href="https://firebase.google.com/">Powered by Firebase</a></div>
+        <div id="footer">Built with ❤ for memes. <a href="https://firebase.google.com/">Powered by Firebase</a></div>
     </div>
 </body>
+
 </html>
