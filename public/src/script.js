@@ -107,6 +107,12 @@ signupBtn.addEventListener('click', async () => {
 loginBtn.addEventListener('click', () => {
 	const email = loginEmailInput.value;
 	const password = loginPasswordInput.value;
+
+	if (!email || !password) {
+		alert('To continue, please complete all required fields (*)');
+		return;
+	}
+
 	signInWithEmailAndPassword(auth, email, password)
 		.then((userCredential) => {
 			console.log('User logged in:', userCredential.user.email);
